@@ -24,37 +24,11 @@ class SearchFragment : Fragment() {
 
     var mMealList: List<Result>? = null
     private lateinit var searchViewModel: SearchViewModel
+    private lateinit var searchAdapter: ListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         retainInstance = true
-//
-//        var posilek1 = Result()
-//
-//        posilek1.name="zupa"
-//        posilek1.href="www.cos.com"
-//        posilek1.ingredients="woda,maslo"
-//        posilek1.thumbnail="zupa.jpg"
-//
-//        var posilek2 = Result()
-//        posilek2.name="zupa"
-//        posilek2.href="www.cos.com"
-//        posilek2.ingredients="woda,maslo"
-//        posilek2.thumbnail="zupa.jpg"
-//
-//        var posilek3 = Result()
-//        posilek3.name="zupa"
-//        posilek3.href="www.cos.com"
-//        posilek3.ingredients="woda,maslo"
-//        posilek3.thumbnail="zupa.jpg"
-//
-//        var posilek4 = Result()
-//        posilek4.name="zupa"
-//        posilek4.href="www.cos.com"
-//        posilek4.ingredients="woda,maslo"
-//        posilek4.thumbnail="zupa.jpg"
-//
-//         mMealList = listOf(posilek1, posilek2, posilek3, posilek4 )
     }
 
 
@@ -62,22 +36,15 @@ class SearchFragment : Fragment() {
             View? {searchViewModel = ViewModelProviders.of(this).get(SearchViewModel::class.java)
 
         val root = inflater.inflate(R.layout.fragment_search, container, false)
-//        val textView: TextView = root.findViewById(R.id.text_search)
-//        searchViewModel.text.observe(this, Observer {
-//            textView.text = it
-//        })
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         list_recycler_view.apply {
-            mMealList = searchViewModel.getData().getAllMeals()
             layoutManager = LinearLayoutManager(activity)
-            adapter = mMealList?.let { ListAdapter(it) }
+            searchViewModel.getAllMeals()
+
         }
     }
-
-
-
 }

@@ -14,11 +14,7 @@ class RecepiesFragment : Fragment() {
 
     private lateinit var recepiesViewModel: RecepiesViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle? ): View? {
         recepiesViewModel =
             ViewModelProviders.of(this).get(RecepiesViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_recipes, container, false)
